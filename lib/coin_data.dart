@@ -33,13 +33,12 @@ const List<String> cryptoList = [
 ];
 
 class CoinData {
-  String coinApiKey2 = "F10F43FE-1248-4637-8B45-9E2DBCD8FA32";
   Future<Map<String, dynamic>> getCoinData(String currency)async{
 
     Map<String, dynamic> cryptoPrices = {};
 
     for(String crypto in cryptoList){
-      var url = Uri.https("rest.coinapi.io", "v1/exchangerate/$crypto/$currency", {'apikey': dotenv.env['COIN_API_KEY_2']});
+      var url = Uri.https("rest.coinapi.io", "v1/exchangerate/$crypto/$currency", {'apikey': dotenv.env['COIN_API_KEY']});
       var response = await http.get(url);
       if(response.statusCode == 200){
         var result = jsonDecode(response.body);
